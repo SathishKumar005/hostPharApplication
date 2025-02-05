@@ -1,0 +1,113 @@
+.billViewOver {
+  background: linear-gradient(
+      135deg,
+      rgba(4, 228, 153, 0.6),
+      rgba(2, 190, 128, 0.6),
+      rgba(3, 155, 108, 0.6)
+    ),
+    url("../../../../assets/26807.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: 2vh;
+  border: 2px solid rgb(30, 186, 139);
+  text-transform: uppercase;
+}
+.bill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.bill-info,
+.apollo-info,
+.branch-info {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.apollo-logo {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.apollo-info {
+  text-align: center;
+}
+
+.bill-info p,
+.apollo-info p,
+.branch-info p {
+  margin: 5px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th,
+td {
+  background-color: white;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: rgb(32, 178, 134);
+  color: white;
+}
+
+.bill-summary {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.bill-summary p {
+  margin: 5px 0;
+  font-weight: bold;
+  text-align: end;
+  .bill-sp {
+    color: red;
+  }
+  span {
+    color: blue;
+  }
+}
+.but-in {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    padding: 8px 20px;
+    background-color: rgb(30, 186, 139);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
+    font-size: 1.3em;
+  }
+  button:hover {
+    transform: scale(1.05);
+  }
+}
+
+.ap-in {
+  display: flex;
+  gap: 8px;
+  padding-left: 30px;
+  p {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    padding-top: 4px;
+    color: rgb(175 27 27);
+  }
+}

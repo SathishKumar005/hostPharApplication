@@ -1,0 +1,157 @@
+<div class="bb-button">
+  <div class="bb-in">
+    <button class="back-button" (click)="goBack()">
+      <img
+        src="https://icons.iconarchive.com/icons/fa-team/fontawesome/128/FontAwesome-Reply-icon.png"
+        width="20"
+        height="20"
+      />
+      <span class="sp">Back</span>
+    </button>
+  </div>
+  <div class="global-search">
+    <label for="globalSearch">Search:</label>
+    <input
+      type="text"
+      [(ngModel)]="globalSearchQuery"
+      (input)="onGlobalSearchChange(globalSearchQuery)"
+      placeholder="Search for a product..."
+    />
+
+    <ul *ngIf="globalProductSuggestions.length > 0" class="suggestions">
+      <li
+        *ngFor="let suggestion of globalProductSuggestions"
+        (click)="selectGlobalProduct(suggestion)"
+      >
+        {{ suggestion.itemName }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="selectedGlobalProduct" class="product-details">
+    <div class="pd-in">
+      <p>
+        <strong><span>Item Name:</span></strong
+        ><span class="sp-white"> {{ selectedGlobalProduct.itemName }}</span>
+      </p>
+      <p>
+        <strong><span>MRP:</span></strong>
+        <span class="sp-white">{{ selectedGlobalProduct.mrp }}</span>
+      </p>
+    </div>
+    <div class="pd-in">
+      <p>
+        <strong><span>Total Quantity:</span></strong>
+        <span class="sp-white">{{ selectedGlobalProduct.qty }}</span>
+      </p>
+      <p>
+        <strong><span>Expiry Date:</span></strong>
+        <span class="sp-white">{{ selectedGlobalProduct.expiryDate }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>MRP</th>
+        <th>GST</th>
+        <th>Batch No</th>
+        <th>HSN</th>
+        <th>Expiry Date</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items; let i = index">
+        <td>{{ i + 1 }}</td>
+
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="item.itemName"
+            (input)="onItemNameChange(i, item.itemName)"
+            [disabled]="!!item.mrp"
+          />
+          <ul
+            *ngIf="productSuggestions.length > 0 && editingRow === i"
+            class="suggestions"
+          >
+            <li
+              *ngFor="let suggestion of productSuggestions"
+              (click)="selectProduct(i, suggestion)"
+            >
+              {{ suggestion.itemName }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="item.quantity"
+            [readonly]="!item.itemName"
+            (change)="calculateTotalAmount(i)"
+            [min]="1"
+          />
+        </td>
+        <td>{{ item.mrp }}</td>
+        <td>{{ item.gst * item.quantity | number : "1.2-2" }}</td>
+        <td>{{ item.batchNo }}</td>
+        <td>{{ item.hsn }}</td>
+        <td>{{ item.expiryDate }}</td>
+        <td>{{ item.totalAmount | number : "1.2-2" }}</td>
+        <td>
+          <button *ngIf="item.totalAmount" (click)="deleteRow(i)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="totals-container">
+  <div class="input-container">
+    <div class="input-div">
+      <label for="customerNumber">Number:</label>
+      <input
+        id="customerNumber"
+        type="text"
+        [(ngModel)]="customerNumber"
+        placeholder="Enter customer number"
+        maxlength="10"
+        (keypress)="restrictToNumbers($event)"
+      />
+    </div>
+    <div class="input-div">
+      <label for="customerName">Name:</label>
+      <input
+        id="customerName"
+        type="text"
+        [(ngModel)]="customerName"
+        placeholder="Enter customer name"
+      />
+    </div>
+  </div>
+  <div class="totals-grp">
+    <div class="totals-row">
+      <div class="totals-label">Total Amount:</div>
+      <div class="totals-value">{{ totalAmount | number : "1.2-2" }}</div>
+    </div>
+    <div class="totals-row">
+      <div class="totals-label">Total Discount:</div>
+      <div class="totals-value">{{ totalDiscount | number : "1.2-2" }}</div>
+    </div>
+    <div class="totals-row">
+      <div class="totals-label">Final Amount:</div>
+      <div class="totals-value">{{ finalAmount | number : "1.2-2" }}</div>
+    </div>
+    <div class="actions">
+      <button (click)="addBill()" [disabled]="!isBillable()">Add Bill</button>
+    </div>
+  </div>
+</div>

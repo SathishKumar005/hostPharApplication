@@ -1,0 +1,65 @@
+<div class="billViewOver">
+  <div class="bill-header">
+    <div class="bill-info">
+      <p><strong>Bill Number :</strong> {{ data.billId }}</p>
+      <p><strong>Date/Time :</strong> {{ formattedDateTime }}</p>
+      <p><strong>Customer Name :</strong> {{ data.customerName }}</p>
+      <p><strong>Customer Number :</strong> {{ data.customerNumber }}</p>
+    </div>
+
+    <div class="apollo-info">
+      <div class="ap-in">
+        <img
+          src="../../../../assets/firstaid11.jpg"
+          height="60px"
+          width="60px"
+          alt="Apollo Pharmacy Logo"
+          class="apollo-logo"
+        />
+        <p><span>MEDIKIDO</span> <span>Pharmacy</span></p>
+      </div>
+      <p><strong>Toll-Free Number:</strong> 1800-123-4567</p>
+    </div>
+
+    <div class="branch-info">
+      <p><strong>Branch :</strong> Apollo Hospital Main</p>
+      <p><strong>Address :</strong> 123 Health St, Cityname</p>
+      <p><strong>Telephone :</strong> +91-9876543210</p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data.items; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.itemName }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.totalAmount | number : "1.2-2" }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="bill-summary">
+    <p>
+      <strong>Total Amount : </strong>
+      <span>{{ data.totalAmount | number : "1.2-2" }}</span>
+    </p>
+    <p>
+      <strong>Discount : </strong>
+      <span class="bill-sp">-{{ data.totalDiscount | number : "1.2-2" }}</span>
+    </p>
+    <p>
+      <strong>Final Amount : </strong>
+      <span>{{ data.finalAmount | number : "1.2-2" }}</span>
+    </p>
+  </div>
+</div>
+<div class="but-in"><button mat-button mat-dialog-close>Print</button></div>

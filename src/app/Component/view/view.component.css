@@ -1,0 +1,274 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.bb-view {
+  background: linear-gradient(
+      45deg,
+      rgba(24, 173, 124, 0.8),
+      rgba(4, 228, 153, 0.8),
+      rgba(5, 146, 99, 0.7)
+    ),
+    url("../../../assets/26807.jpg") no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bb-in {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  h2 {
+    padding-top: 10px;
+    font-size: 1.8em;
+    color: white;
+    span {
+      text-shadow: 1px 1px 2px red;
+    }
+  }
+}
+.bb-intwo {
+  padding: 10px;
+}
+.back-button {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  .sp {
+    padding-left: 7px;
+    color: rgb(32, 178, 134);
+    font-weight: bold;
+  }
+}
+
+.back-button i {
+  margin-right: 5px;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+.view-out {
+  width: 100%;
+  display: flex;
+  height: 90vh;
+}
+.view-in {
+  width: 26%;
+  height: 90vh;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0vh 4vh;
+}
+
+.billed-data-container {
+  width: 75%;
+  height: 80vh;
+  padding: 5px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+th {
+  background-color: rgb(26, 186, 141);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tbody {
+  display: block;
+  max-height: 75vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  h3 {
+    color: rgb(26, 186, 141);
+    text-shadow: 1px 1px 2px rgb(41, 128, 0);
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 25px;
+  color: red;
+  cursor: pointer;
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.modal-table th,
+.modal-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.modal-table th {
+  background-color: rgb(26, 186, 141);
+  color: white;
+}
+
+.modal-table td {
+  background-color: #f8f9fa;
+}
+
+.modal-table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.billed-target {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  h3 {
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 4px 0;
+  }
+}
+
+.meter-container {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.curved-meter {
+  width: 100%;
+  height: 20vh;
+}
+
+.background-arc {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 5;
+}
+
+.progress-arc {
+  fill: none;
+  stroke: rgb(209, 68, 68, 0.9);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transform-origin: center;
+  transition: stroke-dashoffset 3s ease-in-out;
+}
+
+.meter-labels {
+  margin-top: 20px;
+  p {
+    color: white;
+    font-size: 1.1em;
+  }
+}
+
+.low-stock-container {
+  overflow: hidden;
+  height: 30vh;
+  h3 {
+    color: rgb(227, 39, 39);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  tbody {
+    background-color: white;
+  }
+}
+.td-red {
+  color: red;
+}
+.t2 {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  tbody {
+    display: block;
+    max-height: 20vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+
+.low-stock-container th,
+.low-stock-container td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.low-stock-container th {
+  background-color: rgb(26, 186, 141);
+  color: white;
+}
