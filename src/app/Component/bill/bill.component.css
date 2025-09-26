@@ -303,4 +303,10 @@ button:hover {
     }
     display: block;
   }
+
+  .suggestions li {
+    padding: 0;
+    font-size: 5px;
+    padding-left: 7px;
+  }
 }
