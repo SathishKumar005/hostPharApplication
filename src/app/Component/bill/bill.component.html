@@ -10,6 +10,7 @@
     </button>
   </div>
   <div class="global-search">
+    <div>
     <label for="globalSearch">Search:</label>
     <input
       type="text"
@@ -17,38 +18,39 @@
       (input)="onGlobalSearchChange(globalSearchQuery)"
       placeholder="Search for a product..."
     />
-
+</div>
     <ul *ngIf="globalProductSuggestions.length > 0" class="suggestions">
       <li
         *ngFor="let suggestion of globalProductSuggestions"
         (click)="selectGlobalProduct(suggestion)"
       >
-        {{ suggestion.itemName }}
+        {{ suggestion.productName }}
       </li>
     </ul>
-  </div>
-  <div *ngIf="selectedGlobalProduct" class="product-details">
+    <div *ngIf="selectedGlobalProduct" class="product-details">
     <div class="pd-in">
       <p>
-        <strong><span>Item Name:</span></strong
-        ><span class="sp-white"> {{ selectedGlobalProduct.itemName }}</span>
+        <strong><span>Item:</span></strong
+        ><span class="sp-white"> {{ selectedGlobalProduct.productName }}</span>
       </p>
       <p>
         <strong><span>MRP:</span></strong>
-        <span class="sp-white">{{ selectedGlobalProduct.mrp }}</span>
+        <span class="sp-white">{{ selectedGlobalProduct.price }}</span>
       </p>
     </div>
     <div class="pd-in">
       <p>
-        <strong><span>Total Quantity:</span></strong>
-        <span class="sp-white">{{ selectedGlobalProduct.qty }}</span>
+        <strong><span>Quantity:</span></strong>
+        <span class="sp-white">{{ selectedGlobalProduct.quantity }}</span>
       </p>
       <p>
-        <strong><span>Expiry Date:</span></strong>
+        <strong><span>ExpDate:</span></strong>
         <span class="sp-white">{{ selectedGlobalProduct.expiryDate }}</span>
       </p>
     </div>
   </div>
+  </div>
+
 </div>
 <div class="table-container">
   <table>
@@ -74,7 +76,7 @@
           <input
             type="text"
             [(ngModel)]="item.itemName"
-            (input)="onItemNameChange(i, item.itemName)"
+            (input)="onItemNameChange(i,item.itemName)"
             [disabled]="!!item.mrp"
           />
           <ul
@@ -85,7 +87,7 @@
               *ngFor="let suggestion of productSuggestions"
               (click)="selectProduct(i, suggestion)"
             >
-              {{ suggestion.itemName }}
+              {{ suggestion.productName }}
             </li>
           </ul>
         </td>
@@ -151,6 +153,7 @@
       <div class="totals-value">{{ finalAmount | number : "1.2-2" }}</div>
     </div>
     <div class="actions">
+      <!-- <div></div> -->
       <button (click)="addBill()" [disabled]="!isBillable()">Add Bill</button>
     </div>
   </div>

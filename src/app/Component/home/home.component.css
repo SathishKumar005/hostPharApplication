@@ -30,7 +30,7 @@ body {
   background: url("../../../assets/doc.jpg") no-repeat center center/contain;
   margin-bottom: 20px;
   animation: fadeIn 2s ease-in-out;
-  border-radius: 4vh;
+  border-radius: 10vh;
 }
 
 .btn-btns {
@@ -72,4 +72,28 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media screen and (max-width: 480px) {
+.btn-img {
+  width: 70%;
+  height: 60vh;
+  border-radius: 8vh;
+}
+}
+
+@media screen and (max-width: 676px) {
+  .btn-img {
+  width: 52%;
+  height: 35vh;
+  border-radius: 8vh;
+}
+/* .btn-btns {
+  display: flex;
+  gap: 15px;
+} */
+ .action-button {
+   padding: 10px 15px;
+   font-size: 12px;
+ }
 }

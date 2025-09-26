@@ -48,12 +48,18 @@ export class BillComponent implements OnInit {
   onItemNameChange(rowIndex: number, itemName: string): void {
     this.editingRow = rowIndex;
     if (itemName.length > 0) {
-      this.productService.searchProducts(itemName).subscribe({
-        next: (data) => {
-          this.productSuggestions = data;
+      this.productService.getLowStockItems().subscribe({
+        next: (data: any[]) => {
+          // console.log(data,'ds');
+          
+          this.productSuggestions = data.filter((product) =>
+          product.productName.toLowerCase().includes(itemName.toLowerCase())
+          );
+          // console.log(this.productSuggestions,'productsuggestion');
+          
         },
         error: (error) => {
-          console.error('Error fetching product suggestions:', error);
+          // console.error('Error fetching product suggestions:', error);
         },
       });
     } else {
@@ -65,13 +71,13 @@ export class BillComponent implements OnInit {
   selectProduct(rowIndex: number, suggestion: any): void {
     const selectedItem = suggestion;
     const selectedRow = this.items[rowIndex];
-    selectedRow.itemName = selectedItem.itemName;
-    selectedRow.mrp = selectedItem.mrp;
-    console.log(selectedRow.mrp, 'rowww');
-    selectedRow.gst = (selectedItem.mrp * selectedItem.gst) / 100;
-    console.log(selectedRow.gst, 'gsttt');
+    selectedRow.itemName = selectedItem.productName;
+    selectedRow.mrp = selectedItem.price;
+    // console.log(selectedRow.mrp, 'rowww');
+    selectedRow.gst = (selectedItem.price * selectedItem.gst) / 100;
+    // console.log(selectedRow.gst, 'gsttt');
     selectedRow.batchNo = selectedItem.batchNo;
-    selectedRow.hsn = selectedItem.hsn;
+    selectedRow.hsn = selectedItem.hsnCode;
     selectedRow.expiryDate = selectedItem.expiryDate;
     selectedRow.totalAmount = selectedItem.mrp * selectedRow.quantity;
     selectedRow.quantity = 1;
@@ -96,12 +102,12 @@ export class BillComponent implements OnInit {
   calculateTotalAmount(rowIndex: number): void {
     const item = this.items[rowIndex];
     if (item.quantity && item.mrp) {
-      console.log(this.gst, 'BBBBBgsttt22222');
+      // console.log(this.gst, 'BBBBBgsttt22222');
       this.gst = 0;
       this.gst = item.gst * item.quantity;
-      console.log(this.gst, 'gsttt22222');
+      // console.log(this.gst, 'gsttt22222');
       item.totalAmount = item.quantity * item.mrp + this.gst;
-      console.log(item.totalAmount, 'totalllll');
+      // console.log(item.totalAmount, 'totalllll');
       this.calculateTotals();
     }
   }
@@ -125,6 +131,7 @@ export class BillComponent implements OnInit {
       (item) => item.itemName.trim() !== '' && item.quantity > 0
     );
     return hasValidProducts && this.customerName.trim() !== '';
+    // return true;
   }
 
   addBill(): void {
@@ -137,46 +144,64 @@ export class BillComponent implements OnInit {
       return;
     }
 
+     const now = new Date();
+  const createdAt = now.toISOString(); // full ISO date string
+
+   const billId = Math.floor(Math.random() * 20) + 1;
+
     const billData = {
       customerName: this.customerName,
       customerNumber: this.customerNumber,
+       date: createdAt,
+        billId: billId,
       details: validItems.map((item) => ({
         itemName: item.itemName,
         quantity: item.quantity,
         totalAmount: item.totalAmount,
       })),
+          totalAmount: this.totalAmount,      // 🔥 include total
+       discount: this.totalDiscount,       // 🔥 include discount
       finalAmount: this.finalAmount,
     };
 
-    this.productService.addBill(billData).subscribe({
-      next: (response) => {
-        console.log(response);
-        const { id: billId, createdAt } = response;
-        this.reduceProductQuantities();
+//     this.productService.addBill(billData).subscribe({
+//       next: (response) => {
+//         console.log(response,'res');
+//         const { id: billId, createdAt } = response;
+//         // this.reduceProductQuantities();
+// console.log(validItems,'vi');
 
-        this.dialog.open(BillViewComponent, {
-          disableClose: true,
-          width: '80%',
-          height: '70vh',
-          data: {
-            customerName: this.customerName,
-            customerNumber: this.customerNumber,
-            items: validItems,
-            totalAmount: this.totalAmount,
-            totalDiscount: this.totalDiscount,
-            finalAmount: this.finalAmount,
-            billId: billId,
-            createdAt: createdAt,
-          },
-        });
+//         this.dialog.open(BillViewComponent, {
+//           disableClose: true,
+//           width: '80%',
+//           height: '70vh',
+//           data: {
+//             customerName: this.customerName,
+//             customerNumber: this.customerNumber,
+//             items: validItems,
+//             totalAmount: this.totalAmount,
+//             totalDiscount: this.totalDiscount,
+//             finalAmount: this.finalAmount,
+//             billId: billId,
+//             createdAt: createdAt,
+//           },
+//         });
 
-        this.resetForm();
-      },
-      error: (error) => {
-        console.error('Error adding bill:', error);
-        alert('Failed to add bill. Please try again.');
-      },
-    });
+//         this.resetForm();
+//       },
+//       error: (error) => {
+//         console.error('Error adding bill:', error);
+//         alert('Failed to add bill. Please try again.');
+//       },
+//     });
+  this.dialog.open(BillViewComponent, {
+    disableClose: true,
+    width: '80%',
+    height: '70vh',
+    data: billData,
+     panelClass: 'no-padding-dialog' 
+  });
+   this.resetForm();
   }
 
   reduceProductQuantities(): void {
@@ -184,11 +209,11 @@ export class BillComponent implements OnInit {
 
     this.productService.reduceProductQuantities(itemsToReduce).subscribe({
       next: (response) => {
-        console.log('Product quantities reduced successfully:', response);
+        // console.log('Product quantities reduced successfully:', response);
         alert('Product quantities updated successfully!');
       },
       error: (error) => {
-        console.error('Error reducing quantities:', error);
+        // console.error('Error reducing quantities:', error);
         alert('Failed to update product quantities.');
       },
     });
@@ -229,12 +254,17 @@ export class BillComponent implements OnInit {
 
   onGlobalSearchChange(query: string): void {
     if (query.length > 0) {
-      this.productService.searchProducts(query).subscribe({
-        next: (data) => {
-          this.globalProductSuggestions = data;
+      this.productService.getLowStockItems().subscribe({
+        next: (data:any[]) => {
+          // this.globalProductSuggestions = data;
+          // console.log(data,'data');
+          
+          this.globalProductSuggestions = data.filter((product) =>
+          product.productName.toLowerCase().includes(query.toLowerCase())
+        );
         },
         error: (error) => {
-          console.error('Error fetching global product suggestions:', error);
+          // console.error('Error fetching global product suggestions:', error);
         },
       });
     } else {

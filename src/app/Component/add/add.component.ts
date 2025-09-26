@@ -29,24 +29,40 @@ export class AddComponent implements OnInit {
     });
   }
 
+  // onSubmit(): void {
+  //   if (this.addProductForm.valid) {
+  //     this.productService.addProduct(this.addProductForm.value).subscribe({
+  //       next: (response) => {
+  //         console.log('Product added successfully', response);
+  //         this.addProductForm.reset({
+  //           name: '',
+  //           quantity: '',
+  //           price: '',
+  //           batchNo: '',
+  //           hsnCode: '',
+  //           expiryDate: '',
+  //           gst: '',
+  //         });
+  //       },
+  //       error: (error) => {
+  //         console.error('Error adding product', error);
+  //       },
+  //     });
+  //   }
+  // }
   onSubmit(): void {
     if (this.addProductForm.valid) {
-      this.productService.addProduct(this.addProductForm.value).subscribe({
-        next: (response) => {
-          console.log('Product added successfully', response);
-          this.addProductForm.reset({
-            name: '',
-            quantity: '',
-            price: '',
-            batchNo: '',
-            hsnCode: '',
-            expiryDate: '',
-            gst: '',
-          });
-        },
-        error: (error) => {
-          console.error('Error adding product', error);
-        },
+      this.productService.addProduct(this.addProductForm.value);
+      console.log('Product added successfully');
+
+      this.addProductForm.reset({
+        name: '',
+        quantity: '',
+        price: '',
+        batchNo: '',
+        hsnCode: '',
+        expiryDate: '',
+        gst: '',
       });
     }
   }

@@ -74,7 +74,7 @@
 
 .billed-data-container {
   width: 75%;
-  height: 80vh;
+  height: fit-content;
   padding: 5px 20px;
   background-color: #f8f9fa;
   border-radius: 8px;
@@ -271,4 +271,35 @@ tbody tr {
 .low-stock-container th {
   background-color: rgb(26, 186, 141);
   color: white;
+}
+
+
+@media (max-width: 600px) {
+  .billed-data-container {
+    width: 100%;
+    font-size: 8px;
+    padding: 0;
+    height: fit-content;
+  }
+  .view-out {
+    display: block;
+  }
+
+  .view-in {
+    width: auto;
+  }
+  .bb-view {
+    height: 200vh;
+  }
+  .aa {
+    /* color: red;
+     */
+     font-size: 8px;
+  }
+  .curved-meter {
+    height: 25vh;
+  }
+  .low-stock-container {
+    height: auto;
+  }
 }

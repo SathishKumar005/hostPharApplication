@@ -11,7 +11,7 @@ export class ViewComponent implements OnInit {
   bills: any[] = [];
   lowStockItems: any[] = [];
   totalBilledAmount: number = 0;
-  defaultTarget: number = 50000;
+  defaultTarget: number = 20000;
   progressPercentage: number = 0;
   selectedDetails: any = null;
   progressDashArray: string = '126';
@@ -29,32 +29,37 @@ export class ViewComponent implements OnInit {
     this.billService.getBilledData().subscribe({
       next: (data) => {
         this.bills = data;
+        // console.log(this.bills);
       },
       error: (error) => {
-        console.error('Error fetching billed data:', error);
+        // console.error('Error fetching billed data:', error);
       },
     });
   }
 
   fetchLowStockItems(): void {
     this.billService.getLowStockItems().subscribe({
-      next: (data) => {
-        this.lowStockItems = data;
+      next: (data: any[]) => {
+   this.lowStockItems = data.filter(item => item.quantity < 20);
+      // console.log('Low stock items:', this.lowStockItems);
+        
       },
       error: (error) => {
-        console.error('Error fetching low stock items:', error);
+        // console.error('Error fetching low stock items:', error);
       },
     });
   }
 
   fetchMonthlyBilledAmount(): void {
-    this.billService.getMonthlyTotal().subscribe({
-      next: (data: any) => {
-        this.totalBilledAmount = data.totalAmount || 0;
+    this.billService.getBilledData().subscribe({
+      next: (data: any[]) => {
+      this.totalBilledAmount = data.reduce((sum, bill) => sum + bill.finalAmount, 0);
+      
+      // console.log('Total billed amount:', this.totalBilledAmount);
         this.updateProgress();
       },
       error: (err) => {
-        console.error('Error fetching monthly billed amount:', err);
+        // console.error('Error fetching monthly billed amount:', err);
       },
     });
   }
@@ -71,8 +76,10 @@ export class ViewComponent implements OnInit {
   }
 
   viewDetails(details: string): void {
-    this.selectedDetails = JSON.parse(details);
-    console.log(this.selectedDetails, 'Refffff');
+    // console.log("hiii");
+    this.selectedDetails = details;
+    
+    // console.log(details, 'Refffff');
   }
 
   closeDetails(): void {

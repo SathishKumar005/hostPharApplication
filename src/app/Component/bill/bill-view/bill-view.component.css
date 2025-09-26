@@ -1,3 +1,7 @@
+*{
+  padding: 0px;
+}
+
 .billViewOver {
   background: linear-gradient(
       135deg,
@@ -110,4 +114,16 @@ th {
     padding-top: 4px;
     color: rgb(175 27 27);
   }
+}
+
+@media only screen and (max-width: 600px) {
+ .bill-header {
+  padding: 0;
+ }
+ .billViewOver {
+  font-size: 8px;
+ }
+ .apollo-info {
+  display: none;
+ }
 }

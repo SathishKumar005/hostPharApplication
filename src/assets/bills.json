@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "customerName": "Ravi Kumar",
+    "customerNumber": "9876543210",
+    "finalAmount": 1800,
+    "billedDate": "2025-09-25T10:15:00",
+    "viewDetails": [
+        { "itemName": "Paracetamol", "quantity": 20, "totalAmount": 1000 },
+        { "itemName": "Vitamin C", "quantity": 2, "totalAmount": 500 },
+        { "itemName": "Cough Syrup", "quantity": 1, "totalAmount": 300 }
+      ]
+  },
+  {
+    "id": 2,
+    "customerName": "Anjali Sharma",
+    "customerNumber": "9123456780",
+    "finalAmount": 780,
+    "billedDate": "2025-09-25T11:40:00",
+    "viewDetails": [
+        { "itemName": "Antibiotic Capsule", "quantity": 1, "totalAmount": 500 },
+        { "itemName": "Hand Sanitizer", "quantity": 2, "totalAmount": 280 }
+      ]
+  },
+  {
+    "id": 3,
+    "customerName": "Suresh Reddy",
+    "customerNumber": "9988776655",
+    "finalAmount": 1200,
+    "billedDate": "2025-09-25T12:05:00",
+    "viewDetails": [
+        { "itemName": "Blood Pressure Tablet", "quantity": 3, "totalAmount": 900 },
+        { "itemName": "Diabetes Strip Pack", "quantity": 1, "totalAmount": 300 }
+      ]
+    
+  },
+  {
+    "id": 4,
+    "customerName": "Priya Mehta",
+    "customerNumber": "9765432109",
+    "finalAmount": 650,
+    "billedDate": "2025-09-25T13:20:00",
+    "viewDetails": [
+        { "itemName": "Multivitamin Syrup", "quantity": 1, "totalAmount": 200 },
+        { "itemName": "Pain Relief Gel", "quantity": 2, "totalAmount": 450 }
+      ]
+    
+  },
+  {
+    "id": 5,
+    "customerName": "Arun Nair",
+    "customerNumber": "9090909090",
+    "finalAmount": 300,
+    "billedDate": "2025-09-25T14:45:00",
+    "viewDetails": [
+        { "itemName": "Face Mask Pack", "quantity": 3, "totalAmount": 150 },
+        { "itemName": "Thermometer", "quantity": 1, "totalAmount": 150 }
+      ]
+  }
+]

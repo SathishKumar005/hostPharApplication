@@ -1,0 +1,92 @@
+[
+  {
+    "productName": "Para",
+    "price": 25,
+    "hsnCode": "30045010",
+    "gst": 5,
+    "quantity": 100,
+    "batchNo": "B1001",
+    "expiryDate": "2026-03-15"
+  },
+  {
+    "productName": "Amoxi",
+    "price": 120,
+    "hsnCode": "30042019",
+    "gst": 12,
+    "quantity": 50,
+    "batchNo": "B1002",
+    "expiryDate": "2025-12-10"
+  },
+  {
+    "productName": "VitaminC",
+    "price": 60,
+    "hsnCode": "21069099",
+    "gst": 5,
+    "quantity": 200,
+    "batchNo": "B1003",
+    "expiryDate": "2026-07-20"
+  },
+  {
+    "productName": "CoughSyrup",
+    "price": 85,
+    "hsnCode": "30049022",
+    "gst": 12,
+    "quantity": 75,
+    "batchNo": "B1004",
+    "expiryDate": "2025-11-05"
+  },
+  {
+    "productName": "Ibuprofen",
+    "price": 45,
+    "hsnCode": "30049021",
+    "gst": 5,
+    "quantity": 150,
+    "batchNo": "B1005",
+    "expiryDate": "2027-01-30"
+  },
+  {
+    "productName": "Cetirizine",
+    "price": 30,
+    "hsnCode": "30049029",
+    "gst": 5,
+    "quantity": 180,
+    "batchNo": "B1006",
+    "expiryDate": "2026-04-12"
+  },
+  {
+    "productName": "InsulinInjection",
+    "price": 450,
+    "hsnCode": "30021010",
+    "gst": 12,
+    "quantity": 16,
+    "batchNo": "B1007",
+    "expiryDate": "2025-10-01"
+  },
+  {
+    "productName": "PainReliefGel",
+    "price": 95,
+    "hsnCode": "30049013",
+    "gst": 12,
+    "quantity": 60,
+    "batchNo": "B1008",
+    "expiryDate": "2026-08-18"
+  },
+  {
+    "productName": "Multivitamin",
+    "price": 150,
+    "hsnCode": "21069099",
+    "gst": 5,
+    "quantity": 90,
+    "batchNo": "B1009",
+    "expiryDate": "2027-02-28"
+  },
+  {
+    "productName": "AntacidSyrup",
+    "price": 70,
+    "hsnCode": "30049015",
+    "gst": 12,
+    "quantity": 110,
+    "batchNo": "B1010",
+    "expiryDate": "2026-06-25"
+  }
+]
